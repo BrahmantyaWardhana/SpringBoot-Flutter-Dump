@@ -1,10 +1,10 @@
-package com.bwardhana.experimentation;
+package com.dbinteraction.database;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ExperimentationApplicationTests {
+class DatabaseApplicationTests {
 
 	@Test
 	void contextLoads() {

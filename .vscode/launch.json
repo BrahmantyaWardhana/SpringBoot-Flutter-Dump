@@ -1,0 +1,14 @@
+{
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Spring Boot-DatabaseApplication<database>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "com.dbinteraction.database.DatabaseApplication",
+      "projectName": "database",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
+    }
+  ]
+}
