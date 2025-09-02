@@ -1,4 +1,5 @@
 {
   "java.compile.nullAnalysis.mode": "automatic",
-  "cmake.sourceDirectory": "C:/Users/brahm/Desktop/SpringBoot-Flutter-Dump/mobile-flutter/sekolah_maju_prototype/windows"
+  "cmake.sourceDirectory": "C:/Users/brahm/Desktop/SpringBoot-Flutter-Dump/mobile-flutter/prototype/windows",
+  "java.configuration.updateBuildConfiguration": "interactive"
 }
