@@ -1,5 +1,6 @@
 {
   "java.compile.nullAnalysis.mode": "automatic",
   "cmake.sourceDirectory": "C:/Users/brahm/Desktop/SpringBoot-Flutter-Dump/mobile-flutter/prototype/windows",
-  "java.configuration.updateBuildConfiguration": "interactive"
+  "java.configuration.updateBuildConfiguration": "interactive",
+  "cmake.ignoreCMakeListsMissing": true
 }
