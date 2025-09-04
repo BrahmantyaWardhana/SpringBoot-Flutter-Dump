@@ -5,5 +5,9 @@ class AppTheme {
   static final appDefaultTheme = ThemeData(
     useMaterial3: true,
     scaffoldBackgroundColor: AppColors.purple,
+    textTheme: ThemeData().textTheme.apply(
+      bodyColor: AppColors.purpleText,
+      displayColor: AppColors.purpleText,
+    ),
   );
 }
