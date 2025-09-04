@@ -10,6 +10,7 @@ class SignupPage extends StatefulWidget {
 
 class _SignupPageState extends State<SignupPage> {
   bool _hidePwd = true;
+  bool _agreeToTerms = false;
 
   @override
   Widget build(BuildContext context) {
@@ -142,7 +143,11 @@ class _SignupPageState extends State<SignupPage> {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: const [
-                                Icon(Icons.g_mobiledata_rounded, size: 28),
+                                Icon(
+                                  Icons.g_mobiledata_rounded,
+                                  size: 28,
+                                  color: Colors.white,
+                                ),
                                 SizedBox(width: 8),
                                 Text(
                                   'Login with Gmail',
@@ -157,6 +162,52 @@ class _SignupPageState extends State<SignupPage> {
                           ),
                         ),
                       ),
+                    ),
+                    const SizedBox(height: 30),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Theme(
+                          data: Theme.of(context).copyWith(
+                            materialTapTargetSize:
+                                MaterialTapTargetSize.shrinkWrap,
+                          ),
+                          child: Checkbox(
+                            value: _agreeToTerms,
+                            visualDensity: VisualDensity.compact,
+                            activeColor: AppColors.purple,
+                            onChanged: (v) =>
+                                setState(() => _agreeToTerms = v ?? false),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(6),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(width: 8),
+                        Expanded(
+                          child: RichText(
+                            text: TextSpan(
+                              style: const TextStyle(
+                                color: AppColors.purpleText,
+                                height: 1.25,
+                              ),
+                              children: const [
+                                TextSpan(
+                                  text: 'I acknowledge and agree to the ',
+                                ),
+                                TextSpan(
+                                  text: 'terms and service',
+                                  style: TextStyle(
+                                    color: AppColors.orange,
+                                    fontWeight: FontWeight.w700,
+                                  ),
+                                ),
+                                TextSpan(text: ' from Flutter Demo App'),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ],
                 ),
