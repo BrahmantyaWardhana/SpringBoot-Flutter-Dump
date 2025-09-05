@@ -40,6 +40,7 @@ class _SignupPageState extends State<SignupPage> {
                   ],
                 ),
               ),
+              // form container
               Container(
                 width: double.infinity,
                 padding: const EdgeInsets.fromLTRB(20, 16, 20, 24),
