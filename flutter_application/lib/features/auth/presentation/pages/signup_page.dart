@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application/common/theme/app_colors.dart';
 import 'package:flutter_application/features/auth/presentation/widgets/auth_header.dart';
 import 'package:flutter_application/features/auth/presentation/widgets/auth_submit_button.dart';
 import 'package:flutter_application/features/auth/presentation/widgets/auth_signup_form.dart';
@@ -79,6 +80,20 @@ class _SignupPageState extends State<SignupPage> {
                 onAgreeToTermsChanged: (v) =>
                     setState(() => _agreeToTerms = v ?? false),
                 onSignupWithGoogle: () {}, // IMPLEMENT GOOGLE LOGIN
+              ),
+              const SizedBox(height: 28),
+              RichText(
+                text: TextSpan(
+                  text: 'Already have an account? ',
+                  children: [
+                    TextSpan(
+                      text: 'Login',
+                      style: TextStyle(
+                        color: const Color.fromARGB(255, 231, 188, 87),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ],
           ),

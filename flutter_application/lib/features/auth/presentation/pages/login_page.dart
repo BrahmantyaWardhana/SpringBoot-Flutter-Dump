@@ -77,6 +77,20 @@ class _SignInState extends State<SignIn> {
                     setState(() => _agreeToTerms = v ?? false),
                 onLoginWithGoogle: () {}, // IMPLEMENT GOOGLE LOGIN
               ),
+              const SizedBox(height: 28),
+              RichText(
+                text: TextSpan(
+                  text: 'Don\'t have an account? ',
+                  children: [
+                    TextSpan(
+                      text: 'Sign Up',
+                      style: TextStyle(
+                        color: const Color.fromARGB(255, 231, 188, 87),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ],
           ),
         ),
