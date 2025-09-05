@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application/features/auth/presentation/widgets/auth_header.dart';
 import 'package:flutter_application/features/auth/presentation/widgets/auth_signup_cta.dart';
 import 'package:flutter_application/features/auth/presentation/widgets/auth_signup_form.dart';
+import 'package:go_router/go_router.dart';
 
 class SignupPage extends StatefulWidget {
   const SignupPage({super.key});
@@ -44,6 +45,9 @@ class _SignupPageState extends State<SignupPage> {
       // TODO: Call your signup API here using:
       // _usernameCtrl.text, _passwordCtrl.text
       // If success -> navigate
+      await Future.delayed(const Duration(milliseconds: 300));
+      if (!mounted) return;
+      context.go('/');
     } finally {
       if (!mounted) return;
       setState(() => _submitting = false);
