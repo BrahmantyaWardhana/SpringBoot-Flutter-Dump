@@ -196,7 +196,7 @@ class _SignupPageState extends State<SignupPage> {
                                   text: 'I acknowledge and agree to the ',
                                 ),
                                 TextSpan(
-                                  text: 'terms and service',
+                                  text: 'terms and conditions',
                                   style: TextStyle(
                                     color: AppColors.orange,
                                     fontWeight: FontWeight.w700,
