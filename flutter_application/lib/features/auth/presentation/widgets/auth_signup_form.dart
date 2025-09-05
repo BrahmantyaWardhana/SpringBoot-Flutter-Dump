@@ -179,7 +179,7 @@ class AuthSignupForm extends StatelessWidget {
                         ),
                         SizedBox(width: 8),
                         Text(
-                          'Login with Gmail',
+                          'Sign Up With Google',
                           style: TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.w700,

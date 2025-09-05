@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application/features/auth/presentation/widgets/auth_header.dart';
-import 'package:flutter_application/features/auth/presentation/widgets/auth_signup_cta.dart';
+import 'package:flutter_application/features/auth/presentation/widgets/auth_submit_button.dart';
 import 'package:flutter_application/features/auth/presentation/widgets/auth_signup_form.dart';
 import 'package:go_router/go_router.dart';
 
@@ -88,7 +88,7 @@ class _SignupPageState extends State<SignupPage> {
         padding: const EdgeInsets.fromLTRB(20, 10, 20, 20),
         child: SizedBox(
           height: 56,
-          child: AuthSignupCta(
+          child: AuthSubmitButton(
             loading: _submitting,
             onPressed: _submitting ? null : _handleSubmit,
           ),
