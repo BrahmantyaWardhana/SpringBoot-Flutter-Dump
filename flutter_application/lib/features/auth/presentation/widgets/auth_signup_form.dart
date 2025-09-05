@@ -13,7 +13,7 @@ class AuthSignupForm extends StatelessWidget {
     required this.onTogglePassword,
     required this.agreeToTerms,
     required this.onAgreeToTermsChanged,
-    required this.onLoginWithGoogle,
+    required this.onSignupWithGoogle,
   });
 
   final GlobalKey<FormState> formKey;
@@ -27,7 +27,7 @@ class AuthSignupForm extends StatelessWidget {
   final bool agreeToTerms;
   final ValueChanged<bool?> onAgreeToTermsChanged;
 
-  final VoidCallback onLoginWithGoogle;
+  final VoidCallback onSignupWithGoogle;
 
   @override
   Widget build(BuildContext context) {
@@ -168,7 +168,7 @@ class AuthSignupForm extends StatelessWidget {
                   color: Colors.transparent,
                   child: InkWell(
                     borderRadius: BorderRadius.circular(26),
-                    onTap: onLoginWithGoogle,
+                    onTap: onSignupWithGoogle,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: const [
