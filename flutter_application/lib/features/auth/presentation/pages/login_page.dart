@@ -4,14 +4,14 @@ import 'package:flutter_application/features/auth/presentation/widgets/auth_subm
 import 'package:flutter_application/features/auth/presentation/widgets/auth_login_form.dart';
 import 'package:go_router/go_router.dart';
 
-class SignIn extends StatefulWidget {
-  const SignIn({super.key});
+class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
 
   @override
-  State<SignIn> createState() => _SignInState();
+  State<LoginPage> createState() => _LoginPageState();
 }
 
-class _SignInState extends State<SignIn> {
+class _LoginPageState extends State<LoginPage> {
   // Form state owned by the page
   final _formKey = GlobalKey<FormState>();
   final _usernameCtrl = TextEditingController();

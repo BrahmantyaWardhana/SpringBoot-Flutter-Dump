@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-
+import 'features/auth/presentation/pages/login_page.dart';
 import 'features/auth/presentation/pages/signup_page.dart';
 import 'features/home/presentation/pages/home_page.dart';
 
 // Centralized app router configuration using go_router.
 final GoRouter router = GoRouter(
-  initialLocation: '/signup',
+  initialLocation: '/login',
   routes: <RouteBase>[
     GoRoute(
       path: '/',
@@ -18,6 +18,11 @@ final GoRouter router = GoRouter(
       name: 'signup',
       builder: (BuildContext context, GoRouterState state) =>
           const SignupPage(),
+    ),
+    GoRoute(
+      path: '/login',
+      name: 'login',
+      builder: (BuildContext context, GoRouterState state) => const LoginPage(),
     ),
   ],
 );
