@@ -16,7 +16,8 @@ final GoRouter router = GoRouter(
     GoRoute(
       path: '/signup',
       name: 'signup',
-      builder: (BuildContext context, GoRouterState state) => const SignupPage(),
+      builder: (BuildContext context, GoRouterState state) =>
+          const SignupPage(),
     ),
   ],
 );

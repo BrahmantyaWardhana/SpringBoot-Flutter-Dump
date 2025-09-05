@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_application/common/theme/app_colors.dart';
 
 class AuthSignupForm extends StatelessWidget {
   const AuthSignupForm({
     super.key,
     required this.formKey,
+    required this.phoneNumController,
     required this.usernameController,
     required this.passwordController,
     required this.hidePassword,
@@ -15,6 +17,7 @@ class AuthSignupForm extends StatelessWidget {
   });
 
   final GlobalKey<FormState> formKey;
+  final TextEditingController phoneNumController;
   final TextEditingController usernameController;
   final TextEditingController passwordController;
 
@@ -48,11 +51,46 @@ class AuthSignupForm extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             const Text(
-              'Register',
+              'Sign Up',
               textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.w800),
+              style: TextStyle(fontSize: 28, fontWeight: FontWeight.w800),
             ),
             const SizedBox(height: 16),
+
+            // phone number
+            TextFormField(
+              controller: phoneNumController,
+              textInputAction: TextInputAction.next,
+              keyboardType: TextInputType.phone,
+              autofillHints: const [AutofillHints.telephoneNumber],
+              inputFormatters: <TextInputFormatter>[
+                FilteringTextInputFormatter.allow(RegExp(r"[0-9+\-() ]")),
+              ],
+              maxLength: 15,
+              decoration: InputDecoration(
+                hintText: 'Phone number',
+                prefixIcon: const Icon(Icons.phone_outlined),
+                counterText: '',
+                filled: true,
+                fillColor: AppColors.lightPurple,
+                contentPadding: const EdgeInsets.symmetric(vertical: 16),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(20),
+                  borderSide: BorderSide.none,
+                ),
+              ),
+              validator: (v) {
+                if (v == null || v.trim().isEmpty) {
+                  return 'Phone number is required';
+                }
+                final digits = v.replaceAll(RegExp(r'\\D'), '');
+                if (digits.length < 10 || digits.length > 15) {
+                  return 'Enter a valid phone number';
+                }
+                return null;
+              },
+            ),
+            const SizedBox(height: 12),
 
             // username
             TextFormField(
@@ -74,7 +112,6 @@ class AuthSignupForm extends StatelessWidget {
                   : null,
             ),
             const SizedBox(height: 12),
-
             // password
             TextFormField(
               controller: passwordController,
