@@ -155,49 +155,6 @@ class AuthLoginInForm extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 30),
-
-            // terms
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Theme(
-                  data: Theme.of(context).copyWith(
-                    materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                  ),
-                  child: Checkbox(
-                    value: agreeToTerms,
-                    visualDensity: VisualDensity.compact,
-                    activeColor: AppColors.purple,
-                    onChanged: onAgreeToTermsChanged,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(6),
-                    ),
-                  ),
-                ),
-                const SizedBox(width: 8),
-                const Expanded(
-                  child: Text.rich(
-                    TextSpan(
-                      style: TextStyle(
-                        color: AppColors.purpleText,
-                        height: 1.25,
-                      ),
-                      children: [
-                        TextSpan(text: 'I acknowledge and agree to the '),
-                        TextSpan(
-                          text: 'terms and conditions',
-                          style: TextStyle(
-                            color: AppColors.orange,
-                            fontWeight: FontWeight.w700,
-                          ),
-                        ),
-                        TextSpan(text: ' from Flutter Demo App'),
-                      ],
-                    ),
-                  ),
-                ),
-              ],
-            ),
           ],
         ),
       ),
