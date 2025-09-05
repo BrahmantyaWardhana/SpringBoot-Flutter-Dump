@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application/common/theme/app_colors.dart';
 import 'package:flutter_application/features/auth/presentation/widgets/auth_header.dart';
 import 'package:flutter_application/features/auth/presentation/widgets/auth_submit_button.dart';
 import 'package:flutter_application/features/auth/presentation/widgets/auth_signup_form.dart';
