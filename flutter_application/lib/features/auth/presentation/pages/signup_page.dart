@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter_application/features/auth/presentation/widgets/auth_header.dart';
 import 'package:flutter_application/features/auth/presentation/widgets/auth_submit_button.dart';
 import 'package:flutter_application/features/auth/presentation/widgets/auth_signup_form.dart';
@@ -87,9 +88,11 @@ class _SignupPageState extends State<SignupPage> {
                   children: [
                     TextSpan(
                       text: 'Login',
-                      style: TextStyle(
-                        color: const Color.fromARGB(255, 231, 188, 87),
+                      style: const TextStyle(
+                        color: Color.fromARGB(255, 231, 188, 87),
                       ),
+                      recognizer: TapGestureRecognizer()
+                        ..onTap = () => context.push('/login'),
                     ),
                   ],
                 ),
