@@ -78,7 +78,7 @@ class _SignupPageState extends State<SignupPage> {
                 agreeToTerms: _agreeToTerms,
                 onAgreeToTermsChanged: (v) =>
                     setState(() => _agreeToTerms = v ?? false),
-                onLoginWithGoogle: () {}, // IMPLEMENT GOOGLE LOGIN
+                onSignupWithGoogle: () {}, // IMPLEMENT GOOGLE LOGIN
               ),
             ],
           ),
