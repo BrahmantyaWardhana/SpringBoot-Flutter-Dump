@@ -3,7 +3,7 @@ import 'package:flutter_application/common/theme/theme.dart';
 
 import 'routes.dart';
 
-void main() {
+void main() async {
   runApp(const MyApp());
 }
 

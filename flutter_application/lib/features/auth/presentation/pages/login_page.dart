@@ -15,7 +15,7 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   // Form state owned by the page
   final _formKey = GlobalKey<FormState>();
-  final _usernameCtrl = TextEditingController();
+  final _phoneCtrl = TextEditingController();
   final _passwordCtrl = TextEditingController();
 
   bool _hidePwd = true;
@@ -24,20 +24,13 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   void dispose() {
-    _usernameCtrl.dispose();
+    _phoneCtrl.dispose();
     _passwordCtrl.dispose();
     super.dispose();
   }
 
   Future<void> _handleSubmit() async {
     FocusScope.of(context).unfocus();
-
-    if (!_agreeToTerms) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Please agree to the terms first.')),
-      );
-      return;
-    }
 
     if (_formKey.currentState?.validate() != true) return;
 
@@ -69,7 +62,7 @@ class _LoginPageState extends State<LoginPage> {
               // form container
               AuthLoginInForm(
                 formKey: _formKey,
-                usernameController: _usernameCtrl,
+                phoneNumController: _phoneCtrl,
                 passwordController: _passwordCtrl,
                 hidePassword: _hidePwd,
                 onTogglePassword: () => setState(() => _hidePwd = !_hidePwd),
