@@ -16,7 +16,7 @@ class _SignupPageState extends State<SignupPage> {
   // Form state owned by the page
   final _formKey = GlobalKey<FormState>();
   final _usernameCtrl = TextEditingController();
-  final _phoneCtrl = TextEditingController();
+  final _emailCtrl = TextEditingController();
   final _passwordCtrl = TextEditingController();
 
   bool _hidePwd = true;
@@ -27,7 +27,7 @@ class _SignupPageState extends State<SignupPage> {
   void dispose() {
     _usernameCtrl.dispose();
     _passwordCtrl.dispose();
-    _phoneCtrl.dispose();
+    _emailCtrl.dispose();
     super.dispose();
   }
 
@@ -71,7 +71,7 @@ class _SignupPageState extends State<SignupPage> {
               // form container
               AuthSignupForm(
                 formKey: _formKey,
-                phoneNumController: _phoneCtrl,
+                emailController: _emailCtrl,
                 usernameController: _usernameCtrl,
                 passwordController: _passwordCtrl,
                 hidePassword: _hidePwd,

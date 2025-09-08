@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_application/common/theme/app_colors.dart';
 
 class AuthSignupForm extends StatelessWidget {
   const AuthSignupForm({
     super.key,
     required this.formKey,
-    required this.phoneNumController,
+    required this.emailController,
     required this.usernameController,
     required this.passwordController,
     required this.hidePassword,
@@ -17,7 +16,7 @@ class AuthSignupForm extends StatelessWidget {
   });
 
   final GlobalKey<FormState> formKey;
-  final TextEditingController phoneNumController;
+  final TextEditingController emailController;
   final TextEditingController usernameController;
   final TextEditingController passwordController;
 
@@ -57,20 +56,15 @@ class AuthSignupForm extends StatelessWidget {
             ),
             const SizedBox(height: 16),
 
-            // phone number
+            // email
             TextFormField(
-              controller: phoneNumController,
+              controller: emailController,
               textInputAction: TextInputAction.next,
-              keyboardType: TextInputType.phone,
-              autofillHints: const [AutofillHints.telephoneNumber],
-              inputFormatters: <TextInputFormatter>[
-                FilteringTextInputFormatter.allow(RegExp(r"[0-9+\-() ]")),
-              ],
-              maxLength: 15,
+              keyboardType: TextInputType.emailAddress,
+              autofillHints: const [AutofillHints.email],
               decoration: InputDecoration(
-                hintText: 'Phone number',
-                prefixIcon: const Icon(Icons.phone_outlined),
-                counterText: '',
+                hintText: 'Email',
+                prefixIcon: const Icon(Icons.email_outlined),
                 filled: true,
                 fillColor: AppColors.lightPurple,
                 contentPadding: const EdgeInsets.symmetric(vertical: 16),
@@ -80,14 +74,9 @@ class AuthSignupForm extends StatelessWidget {
                 ),
               ),
               validator: (v) {
-                if (v == null || v.trim().isEmpty) {
-                  return 'Phone number is required';
-                }
-                final digits = v.replaceAll(RegExp(r'\\D'), '');
-                if (digits.length < 10 || digits.length > 15) {
-                  return 'Enter a valid phone number';
-                }
-                return null;
+                if (v == null || v.trim().isEmpty) return 'Email is required';
+                final emailRegex = RegExp(r'^[^@\s]+@[^@\s]+\.[^@\s]+$');
+                return emailRegex.hasMatch(v.trim()) ? null : 'Enter a valid email';
               },
             ),
             const SizedBox(height: 12),

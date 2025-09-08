@@ -15,7 +15,7 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   // Form state owned by the page
   final _formKey = GlobalKey<FormState>();
-  final _phoneCtrl = TextEditingController();
+  final _emailCtrl = TextEditingController();
   final _passwordCtrl = TextEditingController();
 
   bool _hidePwd = true;
@@ -24,7 +24,7 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   void dispose() {
-    _phoneCtrl.dispose();
+    _emailCtrl.dispose();
     _passwordCtrl.dispose();
     super.dispose();
   }
@@ -62,7 +62,7 @@ class _LoginPageState extends State<LoginPage> {
               // form container
               AuthLoginInForm(
                 formKey: _formKey,
-                phoneNumController: _phoneCtrl,
+                emailController: _emailCtrl,
                 passwordController: _passwordCtrl,
                 hidePassword: _hidePwd,
                 onTogglePassword: () => setState(() => _hidePwd = !_hidePwd),
