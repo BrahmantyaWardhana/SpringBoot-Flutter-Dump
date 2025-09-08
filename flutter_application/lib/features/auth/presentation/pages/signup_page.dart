@@ -35,91 +35,90 @@ class _SignupPageState extends State<SignupPage> {
 
   Future<void> _handleSubmit() async {
     FocusScope.of(context).unfocus();
-
     if (!_agreeToTerms) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Please agree to the terms first.')),
       );
       return;
     }
-
     if (_formKey.currentState?.validate() != true) return;
-
-    setState(() => _submitting = true);
-    try {
-      // TODO: Call your signup API here using:
-      // _usernameCtrl.text, _passwordCtrl.text
-      // If success -> navigate
-      await Future.delayed(const Duration(milliseconds: 300));
-      if (!mounted) return;
-      context.go('/');
-    } finally {
-      if (!mounted) return;
-      setState(() => _submitting = false);
-    }
+    context.read<AuthBloc>().add(
+      AuthSignup(
+        email: _emailCtrl.text.trim(),
+        name: _usernameCtrl.text.trim(),
+        password: _passwordCtrl.text.trim(),
+      ),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.fromLTRB(20, 16, 20, 24),
-          child: Column(
-            children: [
-              const SizedBox(height: 8),
-              // header
-              const AuthHeader(),
-              // form container
-              AuthSignupForm(
-                formKey: _formKey,
-                emailController: _emailCtrl,
-                usernameController: _usernameCtrl,
-                passwordController: _passwordCtrl,
-                hidePassword: _hidePwd,
-                onTogglePassword: () => setState(() => _hidePwd = !_hidePwd),
-                agreeToTerms: _agreeToTerms,
-                onAgreeToTermsChanged: (v) =>
-                    setState(() => _agreeToTerms = v ?? false),
-                onSignupWithGoogle: () {}, // IMPLEMENT GOOGLE LOGIN
-              ),
-              const SizedBox(height: 28),
-              RichText(
-                text: TextSpan(
-                  text: 'Already have an account? ',
-                  children: [
-                    TextSpan(
-                      text: 'Login',
-                      style: const TextStyle(
-                        color: Color.fromARGB(255, 231, 188, 87),
-                      ),
-                      recognizer: TapGestureRecognizer()
-                        ..onTap = () => context.push('/login'),
-                    ),
-                  ],
+    return BlocListener<AuthBloc, AuthState>(
+      listener: (context, state) {
+        if (state is AuthLoading) {
+          setState(() => _submitting = true);
+        } else {
+          if (_submitting) setState(() => _submitting = false);
+        }
+        if (state is AuthSuccess) {
+          context.go('/');
+        }
+        if (state is AuthFailure) {
+          ScaffoldMessenger.of(
+            context,
+          ).showSnackBar(SnackBar(content: Text(state.message)));
+        }
+      },
+      child: Scaffold(
+        body: SafeArea(
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.fromLTRB(20, 16, 20, 24),
+            child: Column(
+              children: [
+                const SizedBox(height: 8),
+                // header
+                const AuthHeader(),
+                // form container
+                AuthSignupForm(
+                  formKey: _formKey,
+                  emailController: _emailCtrl,
+                  usernameController: _usernameCtrl,
+                  passwordController: _passwordCtrl,
+                  hidePassword: _hidePwd,
+                  onTogglePassword: () => setState(() => _hidePwd = !_hidePwd),
+                  agreeToTerms: _agreeToTerms,
+                  onAgreeToTermsChanged: (v) =>
+                      setState(() => _agreeToTerms = v ?? false),
+                  onSignupWithGoogle: () {}, // IMPLEMENT GOOGLE LOGIN
                 ),
-              ),
-            ],
+                const SizedBox(height: 28),
+                RichText(
+                  text: TextSpan(
+                    text: 'Already have an account? ',
+                    children: [
+                      TextSpan(
+                        text: 'Login',
+                        style: const TextStyle(
+                          color: Color.fromARGB(255, 231, 188, 87),
+                        ),
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () => context.push('/login'),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
-      ),
-      bottomNavigationBar: Padding(
-        padding: const EdgeInsets.fromLTRB(20, 10, 20, 20),
-        child: SizedBox(
-          height: 56,
-          child: AuthSubmitButton(
-            loading: _submitting,
-            onPressed: () {
-              if (_formKey.currentState!.validate()) {
-                context.read<AuthBloc>().add(
-                  AuthSignup(
-                    email: _emailCtrl.text.trim(),
-                    name: _usernameCtrl.text.trim(),
-                    password: _passwordCtrl.text.trim(),
-                  ),
-                );
-              }
-            },
+        bottomNavigationBar: Padding(
+          padding: const EdgeInsets.fromLTRB(20, 10, 20, 20),
+          child: SizedBox(
+            height: 56,
+            child: AuthSubmitButton(
+              loading: _submitting,
+              onPressed: _submitting ? null : _handleSubmit,
+            ),
           ),
         ),
       ),

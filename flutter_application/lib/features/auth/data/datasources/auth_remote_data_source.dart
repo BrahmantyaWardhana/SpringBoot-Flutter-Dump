@@ -25,9 +25,9 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   }) async {
     try {
       final response = await supabaseClient.auth.signUp(
-        password: password,
         email: email,
-        data: {name: name},
+        password: password,
+        data: {'name': name},
       );
 
       if (response.user == null) {
