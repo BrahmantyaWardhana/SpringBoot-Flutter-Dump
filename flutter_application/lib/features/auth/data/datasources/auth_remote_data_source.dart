@@ -1,3 +1,4 @@
+import 'package:flutter_application/common/error/exceptions.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 abstract interface class AuthRemoteDataSource {
@@ -22,19 +23,20 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     required String name,
     required String password,
   }) async {
-    final response = await supabaseClient.auth.signUp(
-      email: email,
-      password: password,
-      data: {
-        'name': name,
-      },
-    );
+    try {
+      final response = await supabaseClient.auth.signUp(
+        password: password,
+        email: email,
+        data: {name: name},
+      );
 
-    final user = response.user;
-    if (user == null) {
-      throw AuthException('Signup failed');
+      if (response.user == null) {
+        throw ServerException('User is null');
+      }
+      return response.user!.id;
+    } catch (e) {
+      throw ServerException(e.toString());
     }
-    return user.id;
   }
 
   @override
