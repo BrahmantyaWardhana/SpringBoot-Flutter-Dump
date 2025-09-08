@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application/common/theme/app_colors.dart';
 
 class AuthSubmitButton extends StatelessWidget {
-  final VoidCallback? onPressed;
+  final VoidCallback onPressed;
   final bool loading;
   final String label;
 

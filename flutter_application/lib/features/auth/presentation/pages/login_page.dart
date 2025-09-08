@@ -95,10 +95,7 @@ class _LoginPageState extends State<LoginPage> {
         padding: const EdgeInsets.fromLTRB(20, 10, 20, 20),
         child: SizedBox(
           height: 56,
-          child: AuthSubmitButton(
-            loading: _submitting,
-            onPressed: _submitting ? null : _handleSubmit,
-          ),
+          child: AuthSubmitButton(loading: _submitting, onPressed: () {}),
         ),
       ),
     );

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
+import 'package:flutter_application/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:flutter_application/features/auth/presentation/widgets/auth_header.dart';
 import 'package:flutter_application/features/auth/presentation/widgets/auth_submit_button.dart';
 import 'package:flutter_application/features/auth/presentation/widgets/auth_signup_form.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 class SignupPage extends StatefulWidget {
@@ -107,7 +109,17 @@ class _SignupPageState extends State<SignupPage> {
           height: 56,
           child: AuthSubmitButton(
             loading: _submitting,
-            onPressed: _submitting ? null : _handleSubmit,
+            onPressed: () {
+              if (_formKey.currentState!.validate()) {
+                context.read<AuthBloc>().add(
+                  AuthSignup(
+                    email: _emailCtrl.text.trim(),
+                    name: _usernameCtrl.text.trim(),
+                    password: _passwordCtrl.text.trim(),
+                  ),
+                );
+              }
+            },
           ),
         ),
       ),
