@@ -4,7 +4,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 abstract interface class AuthRemoteDataSource {
   Future<String> signupWithCredentials({
     required String email,
-    required String name,
+    required String username,
     required String password,
   });
   Future<String> loginWithCredentials({
@@ -20,14 +20,14 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   @override
   Future<String> signupWithCredentials({
     required String email,
-    required String name,
+    required String username,
     required String password,
   }) async {
     try {
       final response = await supabaseClient.auth.signUp(
         email: email,
         password: password,
-        data: {'name': name},
+        data: {'username': username},
       );
 
       if (response.user == null) {

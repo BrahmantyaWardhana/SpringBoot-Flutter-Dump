@@ -4,7 +4,7 @@ import 'package:fpdart/fpdart.dart';
 abstract interface class AuthRepository {
   Future<Either<Failure, String>> signupWithCredentials({
     required String email,
-    required String name,
+    required String username,
     required String password,
   });
   Future<Either<Failure, String>> loginWithCredentials({

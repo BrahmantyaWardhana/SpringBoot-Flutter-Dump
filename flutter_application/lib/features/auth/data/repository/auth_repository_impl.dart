@@ -20,13 +20,13 @@ class AuthRepositoryImpl implements AuthRepository {
   @override
   Future<Either<Failure, String>> signupWithCredentials({
     required String email,
-    required String name,
+    required String username,
     required String password,
   }) async {
     try {
       final userId = await remoteDataSource.signupWithCredentials(
         email: email,
-        name: name,
+        username: username,
         password: password,
       );
 

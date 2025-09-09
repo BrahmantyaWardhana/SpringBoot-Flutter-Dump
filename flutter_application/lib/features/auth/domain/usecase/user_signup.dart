@@ -11,7 +11,7 @@ class UserSignup implements Usecase<String, UserSignupParams> {
   Future<Either<Failure, String>> call(UserSignupParams params) async {
     return await authRepository.signupWithCredentials(
       email: params.email,
-      name: params.name,
+      username: params.username,
       password: params.password,
     );
   }
@@ -19,11 +19,11 @@ class UserSignup implements Usecase<String, UserSignupParams> {
 
 class UserSignupParams {
   final String email;
-  final String name;
+  final String username;
   final String password;
   UserSignupParams({
     required this.email,
-    required this.name,
+    required this.username,
     required this.password,
   });
 }
