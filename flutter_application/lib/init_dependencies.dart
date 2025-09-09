@@ -1,5 +1,5 @@
 import 'package:flutter_application/common/secrets/supabase_secrets.dart';
-import 'package:flutter_application/features/auth/data/datasources/auth_remote_data_source.dart';
+import 'package:flutter_application/features/auth/data/datasource/auth_remote_data_source.dart';
 import 'package:flutter_application/features/auth/data/repository/auth_repository_impl.dart';
 import 'package:flutter_application/features/auth/domain/repository/auth_repository.dart';
 import 'package:flutter_application/features/auth/domain/usecase/user_signup.dart';
