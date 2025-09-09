@@ -38,14 +38,15 @@ class AuthSubmitButton extends StatelessWidget {
                 color: Colors.white,
               ),
             )
-          else
+          else ...[
             Text(label, style: const TextStyle(color: Colors.white)),
-          const SizedBox(width: 8),
-          const Icon(
-            Icons.arrow_right_alt_rounded,
-            size: 24,
-            color: Colors.white,
-          ),
+            const SizedBox(width: 8),
+            const Icon(
+              Icons.arrow_right_alt_rounded,
+              size: 24,
+              color: Colors.white,
+            ),
+          ],
         ],
       ),
     );
