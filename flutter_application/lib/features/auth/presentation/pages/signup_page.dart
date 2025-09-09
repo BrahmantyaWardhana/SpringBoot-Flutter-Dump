@@ -96,13 +96,14 @@ class _SignupPageState extends State<SignupPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     const Text(
-                      "Already have an account?",
+                      "Already have an account? ",
                       style: TextStyle(color: AppColors.lightPurple),
                     ),
                     TextButton(
                       style: TextButton.styleFrom(
                         padding: EdgeInsets.zero,
-                        minimumSize: const Size(0, 0),
+                        minimumSize: Size.zero,
+                        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                       ),
                       onPressed: () => context.push('/login'),
                       child: const Text(
