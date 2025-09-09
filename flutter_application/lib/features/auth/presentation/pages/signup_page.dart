@@ -116,8 +116,8 @@ class _SignupPageState extends State<SignupPage> {
           child: SizedBox(
             height: 56,
             child: AuthSubmitButton(
-              loading: _submitting,
-              onPressed: _submitting ? null : _handleSubmit,
+              isLoading: _submitting,
+              onPressed: _handleSubmit,
             ),
           ),
         ),

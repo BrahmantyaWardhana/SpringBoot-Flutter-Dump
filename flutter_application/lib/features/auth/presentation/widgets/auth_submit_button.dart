@@ -3,20 +3,20 @@ import 'package:flutter_application/common/theme/app_colors.dart';
 
 class AuthSubmitButton extends StatelessWidget {
   final VoidCallback? onPressed;
-  final bool loading;
+  final bool isLoading;
   final String label;
 
   const AuthSubmitButton({
     super.key,
     required this.onPressed,
-    this.loading = false,
+    this.isLoading = false,
     this.label = 'Next',
   });
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      onPressed: loading ? null : onPressed,
+      onPressed: isLoading ? null : onPressed,
       style: ElevatedButton.styleFrom(
         backgroundColor: AppColors.orange,
         elevation: 10,
@@ -28,7 +28,7 @@ class AuthSubmitButton extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         mainAxisSize: MainAxisSize.min,
         children: [
-          if (loading)
+          if (isLoading)
             const SizedBox(
               height: 18,
               width: 18,
