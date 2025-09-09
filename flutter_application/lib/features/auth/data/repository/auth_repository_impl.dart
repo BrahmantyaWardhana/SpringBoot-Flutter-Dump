@@ -4,6 +4,7 @@ import 'package:flutter_application/features/auth/data/datasource/auth_remote_da
 import 'package:flutter_application/features/auth/domain/entity/user.dart';
 import 'package:flutter_application/features/auth/domain/repository/auth_repository.dart';
 import 'package:fpdart/fpdart.dart';
+import 'package:supabase_flutter/supabase_flutter.dart' as sb;
 
 class AuthRepositoryImpl implements AuthRepository {
   final AuthRemoteDataSource remoteDataSource;
@@ -13,9 +14,13 @@ class AuthRepositoryImpl implements AuthRepository {
   Future<Either<Failure, User>> loginWithCredentials({
     required String email,
     required String password,
-  }) {
-    // TODO: implement loginWithCredentials
-    throw UnimplementedError();
+  }) async {
+    return _getUser(
+      () async => await remoteDataSource.loginWithCredentials(
+        email: email,
+        password: password,
+      ),
+    );
   }
 
   @override
@@ -24,14 +29,22 @@ class AuthRepositoryImpl implements AuthRepository {
     required String username,
     required String password,
   }) async {
-    try {
-      final user = await remoteDataSource.signupWithCredentials(
+    return _getUser(
+      () async => await remoteDataSource.signupWithCredentials(
         email: email,
         username: username,
         password: password,
-      );
+      ),
+    );
+  }
+
+  Future<Either<Failure, User>> _getUser(Future<User> Function() fn) async {
+    try {
+      final user = await fn();
 
       return right(user);
+    } on sb.AuthException catch (e) {
+      return left(Failure(e.message));
     } on ServerException catch (e) {
       return left(Failure(e.message));
     }
