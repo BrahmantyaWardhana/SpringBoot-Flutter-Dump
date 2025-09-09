@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter_application/common/error/snackbar_error.dart';
+import 'package:flutter_application/common/theme/app_colors.dart';
 import 'package:flutter_application/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:flutter_application/features/auth/presentation/widgets/auth_header.dart';
 import 'package:flutter_application/features/auth/presentation/widgets/auth_submit_button.dart';
@@ -35,13 +35,14 @@ class _LoginPageState extends State<LoginPage> {
   Future<void> _handleSubmit() async {
     FocusScope.of(context).unfocus();
 
-    if (_formKey.currentState?.validate() != true) return;
-    context.read<AuthBloc>().add(
-      AuthLogin(
-        email: _emailCtrl.text.trim(),
-        password: _passwordCtrl.text.trim(),
-      ),
-    );
+    if (_formKey.currentState?.validate() ?? false) {
+      context.read<AuthBloc>().add(
+        AuthLogin(
+          email: _emailCtrl.text.trim(),
+          password: _passwordCtrl.text.trim(),
+        ),
+      );
+    }
   }
 
   @override
@@ -82,20 +83,25 @@ class _LoginPageState extends State<LoginPage> {
                   onLoginWithGoogle: () {}, // IMPLEMENT GOOGLE LOGIN
                 ),
                 const SizedBox(height: 28),
-                RichText(
-                  text: TextSpan(
-                    text: 'Don\'t have an account? ',
-                    children: [
-                      TextSpan(
-                        text: 'Sign Up',
-                        style: const TextStyle(
-                          color: Color.fromARGB(255, 231, 188, 87),
-                        ),
-                        recognizer: TapGestureRecognizer()
-                          ..onTap = () => context.push('/signup'),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text(
+                      "Don't have an account?",
+                      style: TextStyle(color: AppColors.lightPurple),
+                    ),
+                    TextButton(
+                      style: TextButton.styleFrom(
+                        padding: EdgeInsets.zero,
+                        minimumSize: const Size(0, 0),
                       ),
-                    ],
-                  ),
+                      onPressed: () => context.push('/signup'),
+                      child: const Text(
+                        'Sign Up',
+                        style: TextStyle(color: AppColors.orange),
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),

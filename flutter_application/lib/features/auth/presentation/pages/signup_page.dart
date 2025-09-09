@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter_application/common/error/snackbar_error.dart';
+import 'package:flutter_application/common/theme/app_colors.dart';
 import 'package:flutter_application/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:flutter_application/features/auth/presentation/widgets/auth_header.dart';
 import 'package:flutter_application/features/auth/presentation/widgets/auth_submit_button.dart';
@@ -42,14 +42,15 @@ class _SignupPageState extends State<SignupPage> {
       );
       return;
     }
-    if (_formKey.currentState?.validate() != true) return;
-    context.read<AuthBloc>().add(
-      AuthSignup(
-        email: _emailCtrl.text.trim(),
-        username: _usernameCtrl.text.trim(),
-        password: _passwordCtrl.text.trim(),
-      ),
-    );
+    if (_formKey.currentState?.validate() ?? false) {
+      context.read<AuthBloc>().add(
+        AuthSignup(
+          email: _emailCtrl.text.trim(),
+          username: _usernameCtrl.text.trim(),
+          password: _passwordCtrl.text.trim(),
+        ),
+      );
+    }
   }
 
   @override
@@ -91,20 +92,25 @@ class _SignupPageState extends State<SignupPage> {
                   onSignupWithGoogle: () {}, // IMPLEMENT GOOGLE LOGIN
                 ),
                 const SizedBox(height: 28),
-                RichText(
-                  text: TextSpan(
-                    text: 'Already have an account? ',
-                    children: [
-                      TextSpan(
-                        text: 'Login',
-                        style: const TextStyle(
-                          color: Color.fromARGB(255, 231, 188, 87),
-                        ),
-                        recognizer: TapGestureRecognizer()
-                          ..onTap = () => context.push('/login'),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text(
+                      "Already have an account?",
+                      style: TextStyle(color: AppColors.lightPurple),
+                    ),
+                    TextButton(
+                      style: TextButton.styleFrom(
+                        padding: EdgeInsets.zero,
+                        minimumSize: const Size(0, 0),
                       ),
-                    ],
-                  ),
+                      onPressed: () => context.push('/login'),
+                      child: const Text(
+                        'Login',
+                        style: TextStyle(color: AppColors.orange),
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),
