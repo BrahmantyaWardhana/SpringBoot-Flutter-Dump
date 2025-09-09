@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
+import 'package:flutter_application/common/error/snackbar_error.dart';
 import 'package:flutter_application/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:flutter_application/features/auth/presentation/widgets/auth_header.dart';
 import 'package:flutter_application/features/auth/presentation/widgets/auth_submit_button.dart';
@@ -64,9 +65,7 @@ class _SignupPageState extends State<SignupPage> {
           context.go('/');
         }
         if (state is AuthFailure) {
-          ScaffoldMessenger.of(
-            context,
-          ).showSnackBar(SnackBar(content: Text(state.message)));
+          snackbarError(context, state.message);
         }
       },
       child: Scaffold(
