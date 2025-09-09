@@ -19,6 +19,7 @@ class AuthSubmitButton extends StatelessWidget {
       onPressed: isLoading ? null : onPressed,
       style: ElevatedButton.styleFrom(
         backgroundColor: AppColors.orange,
+        disabledBackgroundColor: AppColors.orange,
         elevation: 10,
         shape: const StadiumBorder(),
         textStyle: const TextStyle(fontWeight: FontWeight.w800, fontSize: 16),
