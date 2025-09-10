@@ -1,7 +1,7 @@
 import 'package:flutter_application/common/error/failure.dart';
 import 'package:flutter_application/common/usecase/usecase.dart';
-import 'package:flutter_application/features/auth/domain/entity/user.dart';
-import 'package:flutter_application/features/auth/domain/repository/auth_repository.dart';
+import 'package:flutter_application/features/auth/domain/entities/user.dart';
+import 'package:flutter_application/features/auth/domain/repositories/auth_repository.dart';
 import 'package:fpdart/fpdart.dart';
 
 class UserLogin implements Usecase<User, UserLoginParams> {

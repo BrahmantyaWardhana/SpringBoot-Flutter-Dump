@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application/features/auth/domain/entity/user.dart';
-import 'package:flutter_application/features/auth/domain/usecase/user_login.dart';
-import 'package:flutter_application/features/auth/domain/usecase/user_signup.dart';
+import 'package:flutter_application/features/auth/domain/entities/user.dart';
+import 'package:flutter_application/features/auth/domain/usecases/user_login.dart';
+import 'package:flutter_application/features/auth/domain/usecases/user_signup.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'auth_event.dart';
