@@ -11,12 +11,12 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 final serviceLocator = GetIt.instance;
 
 Future<void> initDependencies() async {
-  _initAuth();
   final supabase = await Supabase.initialize(
     url: SupabaseSecrets.supabaseUrl,
     anonKey: SupabaseSecrets.supabaseAnonKey,
   );
   serviceLocator.registerLazySingleton(() => supabase.client);
+  _initAuth();
 }
 
 void _initAuth() {
