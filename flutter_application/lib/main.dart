@@ -10,7 +10,11 @@ void main() async {
   await initDependencies();
   runApp(
     MultiBlocProvider(
-      providers: [BlocProvider(create: (_) => serviceLocator<AuthBloc>())],
+      providers: [
+        BlocProvider(
+          create: (_) => serviceLocator<AuthBloc>()..add(AuthIsUserLoggedIn()),
+        ),
+      ],
       child: const MyApp(),
     ),
   );
