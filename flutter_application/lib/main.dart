@@ -3,11 +3,14 @@ import 'package:flutter_application/common/theme/theme.dart';
 import 'package:flutter_application/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:flutter_application/init_dependencies.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 import 'routes.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await initDependencies();
+  final token = Supabase.instance.client.auth.currentSession?.accessToken;
+  print('Supabase accessToken: ' + (token ?? 'null (not logged in)'));
   runApp(
     MultiBlocProvider(
       providers: [
